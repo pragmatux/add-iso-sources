@@ -1,0 +1,11 @@
+[Unit]
+Description=Add APT source for ISO archive on disk %i
+After=mount-usb-media@%i.service
+BindsTo=mount-usb-media@%i.service
+ConditionPathIsDirectory=/run/media/%i
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/lib/add-iso-sources/start /run/media/%I
+ExecStop=/usr/lib/add-iso-sources/stop /run/media/%I

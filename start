@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+disk_mountpoint=$1
+disk=$(basename $disk_mountpoint)
+repo_mountpoint=/run/media/add-iso-sources/from-$disk
+list=/etc/apt/sources.list.d/add-iso-sources-from-$disk.list
+
+for f in $(find $disk_mountpoint -maxdepth 1 -type f); do
+	if [ "$(blkid -o value -s TYPE $f)" = "iso9660" ]; then
+		isofile=$f
+		break
+	fi
+done
+
+test $isofile || exit 0
+
+mkdir -p $repo_mountpoint
+mount -t iso9660 -o ro,loop $isofile $repo_mountpoint
+echo "deb file:$repo_mountpoint/archive master main" >$list

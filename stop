@@ -1,0 +1,13 @@
+#!/bin/sh
+set -e
+
+disk_mountpoint=$1
+disk=$(basename $disk_mountpoint)
+repo_mountpoint=/run/media/add-iso-sources/from-$disk
+list=/etc/apt/sources.list.d/add-iso-sources-from-$disk.list
+
+if [ -e $list ]; then
+	rm $list
+	umount -l $repo_mountpoint
+	rm -rf $repo_mountpoint
+fi

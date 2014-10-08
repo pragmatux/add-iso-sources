@@ -8,4 +8,4 @@ auto-add-iso-sources (0) UNRELEASED; urgency=low
   as several debian tools (e.g., from the devscripts package)
   read the changelog.
 
- -- Generated <invalid@example.com>  Thu, 01 Jan 1970 00:00:00 +0000
+ -- Generated <an@example.com>  Thu, 01 Jan 1970 00:00:00 +0000

@@ -1,0 +1,3 @@
+add-iso-sources@.service /lib/systemd/system/
+start stop /usr/lib/add-iso-sources/
+90-add-iso-sources.rules /lib/udev/rules.d
